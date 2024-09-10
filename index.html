@@ -14,21 +14,5 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="js/roleta.js"></script>
 </body>
-<script>
-	$(document).ready(function() {
-		$('#fetchValues').on('click', function() {
-			$.ajax({
-				url: 'https://roletahugo-b69e04045a85.herokuapp.com/valores',
-				method: 'GET',
-				success: function(response) {
-					// Exemplo simples de exibição dos valores recebidos
-					alert(`Valores recebidos: ${JSON.stringify(response)}`);
-				},
-				error: function(xhr, status, error) {
-					alert(`Erro ao buscar valores: ${error}`);
-				}
-			});
-		});
-	});
-</script>
+
 </html>

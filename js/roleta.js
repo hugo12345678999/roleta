@@ -3,16 +3,16 @@ $(document).ready(function() {
     $.get('https://roletahugo-b69e04045a85.herokuapp.com/valores', function(data) {
         console.log('Dados recebidos:', data);
 
-        // Certifica-se de que a estrutura está correta
+        // Verifica se a resposta contém o array `valores` e que ele tem itens
         if (data && data.valores && data.valores.length > 0) {
-            updateItems(data.valores[0]); // Pega o primeiro objeto do array valores
+            updateItems(data.valores[0]); // Atualiza com o primeiro conjunto de valores
         } else {
             console.error('Estrutura de dados inesperada ou dados ausentes.');
-            alert('Os valores dos itens deu errorrrr');
+            alert('Erro ao carregar dados. Estrutura inesperada ou dados ausentes.');
         }
     }).fail(function() {
-        alert('Erro ao carregar dados da API');
         console.error('Erro ao carregar dados da API.');
+        alert('Erro ao carregar dados da API.');
     });
 
     // Evento de clique na div-roulette
@@ -31,6 +31,8 @@ $(document).ready(function() {
 let items = [];
 
 function updateItems(valores) {
+    console.log('Atualizando itens com os valores:', valores);
+
     // Verifica se todos os valores existem antes de tentar atribuí-los
     let item1 = valores.item1 || 0;
     let item2 = valores.item2 || 0;
