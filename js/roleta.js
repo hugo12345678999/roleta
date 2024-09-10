@@ -1,7 +1,7 @@
 const items = [
-    ['Item 05', 10], // Peso alto para garantir maior chance de ser escolhido
-    ['Item 14', 10],
-    ['Item 17', 10],
+    ['Item 05', 1],
+    ['Item 14', 1],
+    ['Item 17', 1],
 ];
 
 $('.div-roulette').on('click', function() { rodaARoda(); });
@@ -10,6 +10,27 @@ $(document).keypress(function(event) {
     if (event.charCode == 13 || event.charCode == 32) {
         rodaARoda();
     }
+});
+
+// Função para atualizar as probabilidades com base nos números recebidos
+function atualizarProbabilidades(numeros) {
+    // Zerar pesos existentes
+    items.forEach(item => item[1] = 1);
+    
+    // Atualizar pesos com base nos números recebidos
+    numeros.forEach(num => {
+        if (num >= 1 && num <= items.length) {
+            items[num - 1][1] += 10; // Ajuste o valor conforme necessário
+        }
+    });
+}
+
+// Adicionar evento para o botão invisível
+$('#hidden-button').on('click', function() {
+    $.get('/numeros', function(data) {
+        // Espera-se que `data` seja um array de números recebidos
+        atualizarProbabilidades(data);
+    });
 });
 
 function rodaARoda() {
