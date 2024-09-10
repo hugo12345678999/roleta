@@ -4,35 +4,6 @@ const items = [
     ['Item 17', 10],
 ];
 
-let forcedItem = null; // Armazena o item forçado
-
-// Preenche a lista de opções do painel de configuração
-function populateConfigOptions() {
-    const select = $('#item-select');
-    select.empty(); // Limpa as opções atuais
-    items.forEach((item, index) => {
-        select.append(`<option value="${index}">${item[0]}</option>`);
-    });
-}
-
-// Abre o painel de configuração
-$('#config-button').on('click', function() {
-    populateConfigOptions();
-    $('#config-panel').fadeIn();
-});
-
-// Fecha o painel de configuração
-$('#close-config').on('click', function() {
-    $('#config-panel').fadeOut();
-});
-
-// Salva a configuração e força o resultado
-$('#save-config').on('click', function() {
-    forcedItem = parseInt($('#item-select').val());
-    alert(`O próximo resultado será: ${items[forcedItem][0]}`);
-    $('#config-panel').fadeOut();
-});
-
 $('.div-roulette').on('click', function() { rodaARoda(); });
 
 $(document).keypress(function(event) {
@@ -43,22 +14,14 @@ $(document).keypress(function(event) {
 
 function rodaARoda() {
     if (!$('#roulette').hasClass('girando')) {
-        let choosedIndex;
+        let weight = [];
+        items.forEach((item, index) => {
+            for (let i = 0; i < item[1]; i++) {
+                weight.push(index); // Usa o índice do item para referência
+            }
+        });
 
-        // Se houver um item forçado, use-o, caso contrário, escolha aleatoriamente
-        if (forcedItem !== null) {
-            choosedIndex = forcedItem;
-            forcedItem = null; // Reseta o item forçado após o uso
-        } else {
-            let weight = [];
-            items.forEach((item, index) => {
-                for (let i = 0; i < item[1]; i++) {
-                    weight.push(index); // Usa o índice do item para referência
-                }
-            });
-            choosedIndex = weight[Math.floor(Math.random() * weight.length)];
-        }
-
+        let choosedIndex = weight[Math.floor(Math.random() * weight.length)];
         let choosedItem = items[choosedIndex][0]; // Obtém o nome do item escolhido
 
         $('#roulette').removeAttr('class');
@@ -70,10 +33,11 @@ function rodaARoda() {
         setTimeout(() => {
             $('#roulette').removeClass('girando');
             showNotification(choosedItem); // Mostra a notificação com o item escolhido
-        }, 5000);
+        }, 23000);
     }
 }
 
 function showNotification(item) {
+    // Exemplo simples de notificação. Ajuste conforme necessário.
     alert(`Você ganhou: ${item}`);
 }
