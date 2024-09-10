@@ -20,9 +20,9 @@ $(document).ready(function() {
     });
 });
 const items = [
-    ['Item 7', 10], // Peso alto para garantir maior chance de ser escolhido
-    ['Item 14', 10],
-    ['Item 17', 10],
+    ['Item'+data.valor1, 10], // Peso alto para garantir maior chance de ser escolhido
+    ['Item'+data.valor2, 10],
+    ['Item'+data.valor3, 10],
 ];
 
 
