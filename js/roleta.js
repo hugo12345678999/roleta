@@ -28,7 +28,7 @@ const items = [
 
 function updateItems(valores) {
     items = [];
-    ['Item 1', data.item1], // Peso alto para garantir maior chance de ser escolhido
+    ['Item 1', data.item1], // Peso alto para gaffrantir maior chance de ser escolhido
     ['Item 14', data.item14],
     ['Item 17', data.item17],
     console.log('Itens atualizados:', items);
