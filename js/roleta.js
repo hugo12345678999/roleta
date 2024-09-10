@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Requisição GET quando a página é carregada
-    $.get('https://roletahugo-b69e04045a85.herokuapp.com/valores/1', function(data) {
+    $.get('https://roletahugo-b69e04045a85.herokuapp.com/valores', function(data) {
         console.log('Dados recebidos:', data);
 
         // Atualiza o array `items` com base nos dados recebidos
@@ -25,13 +25,14 @@ let items = [];
 
 // Função para atualizar o array `items` com base nos dados recebidos
 function updateItems(data) {
-    items = [
-        ['Item 1', data.valor1],
-        ['Item 2', data.valor2],
-        ['Item 3', data.valor3],
-        ['Item 4', data.valor4],
-        ['Item 5', data.valor5],
-    ];
+    items = [];
+    // Itera sobre cada valor de valor1, valor2, ..., valor5
+    for (let i = 1; i <= 5; i++) {
+        let itemIndex = data[`valor${i}`]; // Pega o número do item
+        if (itemIndex) {
+            items.push([`Item ${itemIndex}`, 10]); // Adiciona o item com peso 10
+        }
+    }
 }
 
 function rodaARoda() {
