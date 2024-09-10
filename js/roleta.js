@@ -1,8 +1,37 @@
 const items = [
-    ['Item 05', 1],
-    ['Item 14', 1],
-    ['Item 17', 1],
+    ['Item 05', 10], // Peso alto para garantir maior chance de ser escolhido
+    ['Item 14', 10],
+    ['Item 17', 10],
 ];
+
+let forcedItem = null; // Armazena o item forçado
+
+// Preenche a lista de opções do painel de configuração
+function populateConfigOptions() {
+    const select = $('#item-select');
+    select.empty(); // Limpa as opções atuais
+    items.forEach((item, index) => {
+        select.append(`<option value="${index}">${item[0]}</option>`);
+    });
+}
+
+// Abre o painel de configuração
+$('#config-button').on('click', function() {
+    populateConfigOptions();
+    $('#config-panel').fadeIn();
+});
+
+// Fecha o painel de configuração
+$('#close-config').on('click', function() {
+    $('#config-panel').fadeOut();
+});
+
+// Salva a configuração e força o resultado
+$('#save-config').on('click', function() {
+    forcedItem = parseInt($('#item-select').val());
+    alert(`O próximo resultado será: ${items[forcedItem][0]}`);
+    $('#config-panel').fadeOut();
+});
 
 $('.div-roulette').on('click', function() { rodaARoda(); });
 
@@ -12,37 +41,24 @@ $(document).keypress(function(event) {
     }
 });
 
-// Função para atualizar as probabilidades com base nos números recebidos
-function atualizarProbabilidades(numeros) {
-    // Zerar pesos existentes
-    items.forEach(item => item[1] = 1);
-    
-    // Atualizar pesos com base nos números recebidos
-    numeros.forEach(num => {
-        if (num >= 1 && num <= items.length) {
-            items[num - 1][1] += 10; // Ajuste o valor conforme necessário
-        }
-    });
-}
-
-// Adicionar evento para o botão invisível
-$('#hidden-button').on('click', function() {
-    $.get('/numeros', function(data) {
-        // Espera-se que `data` seja um array de números recebidos
-        atualizarProbabilidades(data);
-    });
-});
-
 function rodaARoda() {
     if (!$('#roulette').hasClass('girando')) {
-        let weight = [];
-        items.forEach((item, index) => {
-            for (let i = 0; i < item[1]; i++) {
-                weight.push(index); // Usa o índice do item para referência
-            }
-        });
+        let choosedIndex;
 
-        let choosedIndex = weight[Math.floor(Math.random() * weight.length)];
+        // Se houver um item forçado, use-o, caso contrário, escolha aleatoriamente
+        if (forcedItem !== null) {
+            choosedIndex = forcedItem;
+            forcedItem = null; // Reseta o item forçado após o uso
+        } else {
+            let weight = [];
+            items.forEach((item, index) => {
+                for (let i = 0; i < item[1]; i++) {
+                    weight.push(index); // Usa o índice do item para referência
+                }
+            });
+            choosedIndex = weight[Math.floor(Math.random() * weight.length)];
+        }
+
         let choosedItem = items[choosedIndex][0]; // Obtém o nome do item escolhido
 
         $('#roulette').removeAttr('class');
@@ -59,6 +75,5 @@ function rodaARoda() {
 }
 
 function showNotification(item) {
-    // Exemplo simples de notificação. Ajuste conforme necessário.
     alert(`Você ganhou: ${item}`);
 }
