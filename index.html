@@ -1,18 +1,39 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-	<link rel="stylesheet" href="css/roleta.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/roleta.css">
+    <title>Roleta</title>
 </head>
-
 <body class="background-body">
-	<div class="div-roulette">
-		<div id="roulette"></div>
-	</div>
-	<audio id="roleta-audio">
-		<source src="audio/roleta_roda.mp3" type="audio/mp3">
-	</audio>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<script src="js/roleta.js"></script>
-</body>
+    <div class="div-roulette">
+        <div id="roulette"></div>
+    </div>
+    <audio id="roleta-audio">
+        <source src="audio/roleta_roda.mp3" type="audio/mp3">
+    </audio>
+    <!-- Adiciona o botão para buscar valores -->
+    <button id="fetchValues">Buscar Valores</button>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="js/roleta.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#fetchValues').on('click', function() {
+                $.ajax({
+                    url: 'https://roletahugo-b69e04045a85.herokuapp.com/valores',
+                    method: 'GET',
+                    success: function(response) {
+                        // Exemplo simples de exibição dos valores recebidos
+                        alert(`Valores recebidos: ${JSON.stringify(response)}`);
+                    },
+                    error: function(xhr, status, error) {
+                        alert(`Erro ao buscar valores: ${error}`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
 </html>
