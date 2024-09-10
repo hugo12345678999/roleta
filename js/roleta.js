@@ -4,7 +4,7 @@ function atualizarItens() {
         const valores = data.valores[0];
         // Atualize a lista de itens com base nos valores retornados
         items = [
-            ['Item 01', valores.valor1],
+            ['Item 01', 10],
             ['Item 02', valores.valor2],
             ['Item 03', valores.valor3],
             ['Item 04', valores.valor4],
