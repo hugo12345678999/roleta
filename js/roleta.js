@@ -1,5 +1,5 @@
 const items = [
-    ['Item 05', 10], // Peso alto para garantir maior chance de ser escolhido
+    ['Item 7', 10], // Peso alto para garantir maior chance de ser escolhido
     ['Item 14', 10],
     ['Item 17', 10],
 ];
@@ -11,6 +11,7 @@ $(document).keypress(function(event) {
         rodaARoda();
     }
 });
+
 
 function rodaARoda() {
     if (!$('#roulette').hasClass('girando')) {
