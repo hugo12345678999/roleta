@@ -3,9 +3,9 @@ $(document).ready(function() {
     $.get('https://roletahugo-b69e04045a85.herokuapp.com/valores', function(data) {
         console.log('Dados recebidos:', data);
 
-        // Atualiza os itens com os valores recebidos, assumindo que data.valores[0] é o objeto que contém item1 a item23
+        // Certifica-se de que a estrutura está correta
         if (data && data.valores && data.valores.length > 0) {
-            updateItems(data.valores[0]);
+            updateItems(data.valores[0]); // Pega o primeiro objeto do array valores
         } else {
             console.error('Estrutura de dados inesperada ou dados ausentes.');
         }
