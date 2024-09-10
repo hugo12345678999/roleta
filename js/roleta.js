@@ -23,33 +23,42 @@ const items = [
     ['Item 22', 1],
     ['Item 23', 1],
     ['Item 24', 1],
-]
+];
 
-$('.div-roulette').on('click', function() {rodaARoda()});
+$('.div-roulette').on('click', function() { rodaARoda(); });
 
 $(document).keypress(function(event) {
-    if(event.charCode == 13 || event.charCode == 32){
+    if (event.charCode == 13 || event.charCode == 32) {
         rodaARoda();
     }
 });
 
-function rodaARoda(){
-    if(!$('#roulette').hasClass('girando')){
-        let weight = new Array();
+function rodaARoda() {
+    if (!$('#roulette').hasClass('girando')) {
+        let weight = [];
         items.forEach((item, key) => {
             for (let i = 0; i < item[1]; i++) {
                 weight.push(key + 1);
             }
         });
+        
         let choosed = weight[Math.floor(Math.random() * weight.length)];
+        let choosedItem = items[choosed - 1][0]; // Get the item name
+        
         $('#roulette').removeAttr('class');
         setTimeout(() => {
             document.getElementById("roleta-audio").play();
-            return $('#roulette').addClass(`number-${choosed}`).addClass('girando');
+            $('#roulette').addClass(`number-${choosed}`).addClass('girando');
         }, 50);
 
         setTimeout(() => {
             $('#roulette').removeClass('girando');
+            showNotification(choosedItem); // Show the notification with the chosen item
         }, 23000);
     }
+}
+
+function showNotification(item) {
+    // You can use any method to show a notification. Here's a basic example using alert:
+    alert(`Você ganhou: ${item}`);
 }
