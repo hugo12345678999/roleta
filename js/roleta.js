@@ -2,8 +2,9 @@ $(document).ready(function() {
     // Requisição GET quando a página é carregada
     $.get('https://roletahugo-b69e04045a85.herokuapp.com/valores', function(data) {
         console.log('Dados recebidos:', data);
-        
-        // Atualiza o array `items` com os dados recebidos
+        // Aqui você pode processar os dados recebidos e atualizar o array `items`
+        // Exemplo de atualização, assumindo que a resposta seja um array de itens
+        // items = data; // Atualize conforme a estrutura da resposta
         updateItems(data.valores[0]);
     }).fail(function() {
         console.error('Erro ao carregar dados da API.');
@@ -19,17 +20,17 @@ $(document).ready(function() {
         }
     });
 });
+const items = [
 
-let items = [];
+];
+
+
 
 function updateItems(valores) {
     items = [];
-    for (let i = 1; i <= 23; i++) {
-        let itemKey = `item${i}`;
-        if (valores[itemKey]) {
-            items.push([`Item ${i}`, parseInt(valores[itemKey])]);
-        }
-    }
+    ['Item 1', data.item1], // Peso alto para garantir maior chance de ser escolhido
+    ['Item 14', data.item14],
+    ['Item 17', data.item17],
     console.log('Itens atualizados:', items);
 }
 
