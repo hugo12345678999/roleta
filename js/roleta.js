@@ -13,6 +13,7 @@ $(document).ready(function() {
     }).fail(function() {
         console.error('Erro ao carregar dados da API.');
         alert('Erro ao carregar dados da API.');
+        updateItems(data.valores[0]); // Atualiza com o primeiro conjunto de valores
     });
 
     // Evento de clique na div-roulette
