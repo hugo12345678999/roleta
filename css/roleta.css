@@ -105,8 +105,8 @@
     }
 
     to {
-        -webkit-transform: rotate(3615deg);
-        transform: rotate(3615deg);
+        -webkit-transform: rotate(1000deg);
+        transform: rotate(1000deg);
     }
 }
 
