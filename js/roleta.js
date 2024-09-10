@@ -75,6 +75,9 @@ function updateItems(valores) {
     ];
 
     console.log('Itens atualizados:', items);
+    
+    // Exibir uma notificação quando os valores forem atualizados
+    alert('Os valores dos itens foram atualizados!');
 }
 
 function rodaARoda() {
