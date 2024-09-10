@@ -1,17 +1,19 @@
-const items = [
-    ['Item 05', 10], // Peso alto para garantir maior chance de ser escolhido
-    ['Item 14', 10],
-    ['Item 17', 10],
-];
+// Função para buscar os valores da API e atualizar os itens
+function atualizarItens() {
+    $.get('https://roletahugo-b69e04045a85.herokuapp.com/valores', function(data) {
+        const valores = data.valores[0];
+        // Atualize a lista de itens com base nos valores retornados
+        items = [
+            ['Item 01', valores.valor1],
+            ['Item 02', valores.valor2],
+            ['Item 03', valores.valor3],
+            ['Item 04', valores.valor4],
+            ['Item 05', valores.valor5],
+        ];
+    });
+}
 
-$('.div-roulette').on('click', function() { rodaARoda(); });
-
-$(document).keypress(function(event) {
-    if (event.charCode == 13 || event.charCode == 32) {
-        rodaARoda();
-    }
-});
-
+// Função para iniciar a roleta
 function rodaARoda() {
     if (!$('#roulette').hasClass('girando')) {
         let weight = [];
@@ -37,7 +39,20 @@ function rodaARoda() {
     }
 }
 
+// Função para mostrar uma notificação com o item escolhido
 function showNotification(item) {
     // Exemplo simples de notificação. Ajuste conforme necessário.
     alert(`Você ganhou: ${item}`);
 }
+
+// Atualiza os itens ao carregar a página
+$(document).ready(function() {
+    atualizarItens();
+    $('.div-roulette').on('click', function() { rodaARoda(); });
+
+    $(document).keypress(function(event) {
+        if (event.charCode == 13 || event.charCode == 32) {
+            rodaARoda();
+        }
+    });
+});
