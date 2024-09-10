@@ -8,8 +8,10 @@ $(document).ready(function() {
             updateItems(data.valores[0]); // Pega o primeiro objeto do array valores
         } else {
             console.error('Estrutura de dados inesperada ou dados ausentes.');
+            alert('Os valores dos itens deu errorrrr');
         }
     }).fail(function() {
+        alert('Erro ao carregar dados da API');
         console.error('Erro ao carregar dados da API.');
     });
 
