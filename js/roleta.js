@@ -1,5 +1,5 @@
 const items = [
-    ['Item 8', 90], // Peso alto para garantir maior chance de ser escolhido
+    ['Item 8', 10], // Peso alto para garantir maior chance de ser escolhido
     ['Item 3', 10],
     ['Item 5', 10],
 ];
