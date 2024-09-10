@@ -1,7 +1,7 @@
 const items = [
     ['Item 8', 10], // Peso alto para garantir maior chance de ser escolhido
     ['Item 3', 10],
-    ['Item 5', 10],
+    ['Item 4', 10],
 ];
 
 let forcedItem = null; // Armazena o item forçado

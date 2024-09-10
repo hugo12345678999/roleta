@@ -177,8 +177,8 @@
     }
 
     to {
-        -webkit-transform: rotate(9000deg);
-        transform: rotate(9000deg);
+        -webkit-transform: rotate(3675deg);
+        transform: rotate(3675deg);
     }
 }
 
@@ -189,8 +189,8 @@
     }
 
     to {
-        -webkit-transform: rotate(9000deg);
-        transform: rotate(9000deg);
+        -webkit-transform: rotate(3675deg);
+        transform: rotate(3675deg);
     }
 }
 
@@ -201,8 +201,8 @@
     }
 
     to {
-        -webkit-transform: rotate(3675deg);
-        transform: rotate(3675deg);
+        -webkit-transform: rotate(9000deg);
+        transform: rotate(9000deg);
     }
 }
 
@@ -213,8 +213,8 @@
     }
 
     to {
-        -webkit-transform: rotate(3675deg);
-        transform: rotate(3675deg);
+        -webkit-transform: rotate(9000deg);
+        transform: rotate(9000deg);
     }
 }
 
