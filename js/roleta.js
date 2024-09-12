@@ -1,7 +1,7 @@
 const items = [
    
     ['Item 01', 1],
-    ['Item 02', 1],
+    ['Item 02', 100],
     ['Item 03', 1],
     ['Item 04', 1],
     ['Item 05', 1],
@@ -18,7 +18,7 @@ const items = [
     ['Item 16', 1],
     ['Item 17', 1],
     ['Item 18', 1],
-    ['Item 19', 100],
+    ['Item 19', 1],
     ['Item 20', 1],
     ['Item 21', 1],
     ['Item 22', 1],
