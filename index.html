@@ -11,7 +11,25 @@
 	<audio id="roleta-audio">
 		<source src="audio/roleta_roda.mp3" type="audio/mp3">
 	</audio>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+	<!-- Painel de Configuração -->
+	<div id="config-panel" style="display:none;">
+		<h3>Forçar Item</h3>
+		<select id="item-select"></select>
+		<button id="save-config">Salvar</button>
+		<button id="close-config">Fechar</button>
+	</div>
+
+	<!-- Painel de Configuração de Pesos -->
+	<div id="weight-config-panel" style="display:none;">
+		<h3>Configurar Pesos dos Itens</h3>
+		<form id="weight-form"></form>
+		<button id="save-weight-config">Salvar Pesos</button>
+		<button id="close-weight-config">Fechar</button>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="js/roleta.js"></script>
 </body>
 
