@@ -1,7 +1,7 @@
 const items = [
    
-    ['Item 14', 10],
-    ['Item 17', 80],
+    ['Item 14', 80],
+    ['Item 17', 10],
 ];
 
 let forcedItem = null; // Armazena o item forçado
