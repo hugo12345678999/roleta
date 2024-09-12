@@ -43,8 +43,8 @@
     position: relative;
     -webkit-animation-timing-function: cubic-bezier(0, 0.4, 0.4, 1.04);
     animation-timing-function: cubic-bezier(0, 0.4, 0.4, 1.04);
-    -webkit-animation-duration: 5s;
-    animation-duration: 5s;
+    -webkit-animation-duration: 23s;
+    animation-duration: 23s;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     -webkit-animation-iteration-count: 1;
@@ -303,8 +303,8 @@
     }
 
     to {
-        -webkit-transform: rotate(3690deg);
-        transform: rotate(3690deg);
+        -webkit-transform: rotate(3960deg);
+        transform: rotate(3960deg);
     }
 }
 
@@ -315,8 +315,8 @@
     }
 
     to {
-        -webkit-transform: rotate(3690deg);
-        transform: rotate(3690deg);
+        -webkit-transform: rotate(3960deg);
+        transform: rotate(3960deg);
     }
 }
 
@@ -715,8 +715,8 @@
     }
 
     to {
-        -webkit-transform: rotate(3945deg);
-        transform: rotate(3945deg);
+        -webkit-transform: rotate(4000deg);
+        transform: rotate(4000deg);
     }
 }
 
@@ -727,8 +727,8 @@
     }
 
     to {
-        -webkit-transform: rotate(3945deg);
-        transform: rotate(3945deg);
+        -webkit-transform: rotate(4000deg);
+        transform: rotate(4000deg);
     }
 }
 
@@ -739,8 +739,8 @@
     }
 
     to {
-        -webkit-transform: rotate(3960deg);
-        transform: rotate(3960deg);
+        -webkit-transform: rotate(3690deg);
+        transform: rotate(3690deg);
     }
 }
 
@@ -751,7 +751,7 @@
     }
 
     to {
-        -webkit-transform: rotate(3960deg);
-        transform: rotate(3960deg);
+        -webkit-transform: rotate(3690deg);
+        transform: rotate(3690deg);
     }
 }
