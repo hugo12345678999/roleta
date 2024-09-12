@@ -27,52 +27,66 @@ const items = [
 
 let forcedItem = null; // Armazena o item forçado
 let spinCount = 0; // Contador de tentativas
-let playCount = new Array(items.length).fill(0); // Contador de jogadas por item
-let jogadasParaGanhar = new Array(items.length).fill(10); // Padrão de jogadas para ganhar cada item
 
 // Preenche a lista de opções do painel de configuração
 function populateConfigOptions() {
     const select = $('#item-select');
-    select.empty();
+    select.empty(); // Limpa as opções atuais
     items.forEach((item, index) => {
         select.append(`<option value="${index}">${item[0]}</option>`);
     });
 }
 
-// Preenche o formulário de jogadas para ganhar
-function populatePlayConfig() {
-    const form = $('#play-form');
-    form.empty();
+// Preenche os campos de peso do painel de configuração
+function populateWeightConfig() {
+    const weightForm = $('#weight-form');
+    weightForm.empty(); // Limpa os campos atuais
     items.forEach((item, index) => {
-        form.append(`
+        weightForm.append(`
             <div>
-                <label for="jogadas-item-${index}">${item[0]}: </label>
-                <input type="number" id="jogadas-item-${index}" value="${jogadasParaGanhar[index]}" min="1">
+                <label for="item-${index}-weight">${item[0]}:</label>
+                <input type="number" id="item-${index}-weight" value="${item[1]}" min="1" />
             </div>
         `);
     });
 }
 
-// Abre o painel de configuração de jogadas
+// Abre o painel de configuração
+$('#config-button').on('click', function() {
+    populateConfigOptions();
+    $('#config-panel').fadeIn();
+});
+
+// Fecha o painel de configuração
+$('#close-config').on('click', function() {
+    $('#config-panel').fadeOut();
+});
+
+// Salva a configuração e força o resultado
+$('#save-config').on('click', function() {
+    forcedItem = parseInt($('#item-select').val());
+    alert(`O próximo resultado será: ${items[forcedItem][0]}`);
+    $('#config-panel').fadeOut();
+});
+
+// Abre o painel de peso ao pressionar a tecla 'T'
 $(document).keypress(function(event) {
-    if (event.key === 't' || event.key === 'T') {
-        populatePlayConfig();
-        $('#play-config-panel').fadeIn();
+    if (event.charCode == 116) { // 116 é o código ASCII para 'T'
+        populateWeightConfig();
+        $('#weight-config-panel').fadeIn();
     }
 });
 
-// Fecha o painel de configuração de jogadas
-$('#close-play-config').on('click', function() {
-    $('#play-config-panel').fadeOut();
-});
-
-// Salva as configurações de jogadas
-$('#save-play-config').on('click', function() {
+// Salva as mudanças de peso
+$('#save-weight-config').on('click', function() {
     items.forEach((item, index) => {
-        jogadasParaGanhar[index] = parseInt($(`#jogadas-item-${index}`).val());
+        let newWeight = parseInt($(`#item-${index}-weight`).val());
+        if (newWeight > 0) {
+            items[index][1] = newWeight;
+        }
     });
-    alert('Configurações de jogadas salvas!');
-    $('#play-config-panel').fadeOut();
+    alert('Pesos atualizados com sucesso!');
+    $('#weight-config-panel').fadeOut();
 });
 
 $('.div-roulette').on('click', function() { rodaARoda(); });
@@ -86,37 +100,27 @@ $(document).keypress(function(event) {
 function rodaARoda() {
     if (!$('#roulette').hasClass('girando')) {
         let choosedIndex;
+
+        // Incrementa o contador de tentativas
         spinCount++;
 
-        // Verifica se algum item atingiu o número de jogadas configurado
-        for (let i = 0; i < playCount.length; i++) {
-            if (playCount[i] >= jogadasParaGanhar[i]) {
-                choosedIndex = i;
-                playCount[i] = 0; // Reseta o contador do item após ele ser escolhido
-                break;
-            }
+        // Se houver um item forçado, use-o, caso contrário, escolha aleatoriamente
+        if (spinCount % 90 === 0) {
+            choosedIndex = 0; // Força o "Item 05" (índice 0) na décima tentativa
+        } else if (forcedItem !== null) {
+            choosedIndex = forcedItem;
+            forcedItem = null; // Reseta o item forçado após o uso
+        } else {
+            let weight = [];
+            items.forEach((item, index) => {
+                for (let i = 0; i < item[1]; i++) {
+                    weight.push(index); // Usa o índice do item para referência
+                }
+            });
+            choosedIndex = weight[Math.floor(Math.random() * weight.length)];
         }
 
-        if (typeof choosedIndex === 'undefined') {
-            // Se não houver item configurado, escolhe aleatoriamente
-            if (forcedItem !== null) {
-                choosedIndex = forcedItem;
-                forcedItem = null; // Reseta o item forçado após o uso
-            } else {
-                let weight = [];
-                items.forEach((item, index) => {
-                    for (let i = 0; i < item[1]; i++) {
-                        weight.push(index);
-                    }
-                });
-                choosedIndex = weight[Math.floor(Math.random() * weight.length)];
-            }
-        }
-
-        // Incrementa o contador de jogadas para cada item
-        playCount = playCount.map((count, index) => (index === choosedIndex ? 0 : count + 1));
-
-        let choosedItem = items[choosedIndex][0];
+        let choosedItem = items[choosedIndex][0]; // Obtém o nome do item escolhido
 
         $('#roulette').removeAttr('class');
         setTimeout(() => {
@@ -126,8 +130,8 @@ function rodaARoda() {
 
         setTimeout(() => {
             $('#roulette').removeClass('girando');
-            showNotification(choosedItem);
-        }, 23000);
+            showNotification(choosedItem); // Mostra a notificação com o item escolhido
+        }, 5000);
     }
 }
 

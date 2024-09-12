@@ -43,8 +43,8 @@
     position: relative;
     -webkit-animation-timing-function: cubic-bezier(0, 0.4, 0.4, 1.04);
     animation-timing-function: cubic-bezier(0, 0.4, 0.4, 1.04);
-    -webkit-animation-duration: 23s;
-    animation-duration: 23s;
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     -webkit-animation-iteration-count: 1;
