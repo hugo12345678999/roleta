@@ -99,7 +99,7 @@ function rodaARoda() {
         setTimeout(() => {
             $('#roulette').removeClass('girando');
             showNotification(choosedItem); // Mostra a notificação com o item escolhido
-        }, 5000);
+        }, 23000);
     }
 }
 
