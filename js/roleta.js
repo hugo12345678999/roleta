@@ -4,7 +4,7 @@ const items = [
     ['Item 02', 1],
     ['Item 03', 1],
     ['Item 04', 1],
-    ['Item 05', 1],
+    ['Item 05', 10],
     ['Item 06', 1],
     ['Item 07', 1],
     ['Item 08', 1],
