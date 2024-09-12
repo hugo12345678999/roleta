@@ -1,6 +1,7 @@
 const items = [
-    ['Item 1', 80], // Peso alto para garantir maior chance de ser escolhido
-
+    ['Item 2', 900], // Peso alto para garantir maior chance de ser escolhido
+    ['Item 14', 10],
+    ['Item 17', 10],
 ];
 
 let forcedItem = null; // Armazena o item forçado
@@ -76,7 +77,7 @@ function rodaARoda() {
         setTimeout(() => {
             $('#roulette').removeClass('girando');
             showNotification(choosedItem); // Mostra a notificação com o item escolhido
-        }, 23000);
+        }, 5000);
     }
 }
 
