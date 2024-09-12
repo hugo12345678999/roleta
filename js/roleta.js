@@ -50,7 +50,7 @@ function rodaARoda() {
         spinCount++;
 
         // Se houver um item forçado, use-o, caso contrário, escolha aleatoriamente
-        if (spinCount % 3 === 0) {
+        if (spinCount % 90 === 0) {
             choosedIndex = 0; // Força o "Item 05" (índice 0) na décima tentativa
       
         } else if (forcedItem !== null) {
