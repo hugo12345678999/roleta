@@ -1,8 +1,7 @@
 const items = [
-   
     ['Item 01', 1],
     ['Item 02', 1],
-    ['Item 03', 100],
+    ['Item 03', 1],
     ['Item 04', 1],
     ['Item 05', 1],
     ['Item 06', 1],
@@ -38,6 +37,20 @@ function populateConfigOptions() {
     });
 }
 
+// Preenche os campos de peso do painel de configuração
+function populateWeightConfig() {
+    const weightForm = $('#weight-form');
+    weightForm.empty(); // Limpa os campos atuais
+    items.forEach((item, index) => {
+        weightForm.append(`
+            <div>
+                <label for="item-${index}-weight">${item[0]}:</label>
+                <input type="number" id="item-${index}-weight" value="${item[1]}" min="1" />
+            </div>
+        `);
+    });
+}
+
 // Abre o painel de configuração
 $('#config-button').on('click', function() {
     populateConfigOptions();
@@ -54,6 +67,26 @@ $('#save-config').on('click', function() {
     forcedItem = parseInt($('#item-select').val());
     alert(`O próximo resultado será: ${items[forcedItem][0]}`);
     $('#config-panel').fadeOut();
+});
+
+// Abre o painel de peso ao pressionar a tecla 'T'
+$(document).keypress(function(event) {
+    if (event.charCode == 116) { // 116 é o código ASCII para 'T'
+        populateWeightConfig();
+        $('#weight-config-panel').fadeIn();
+    }
+});
+
+// Salva as mudanças de peso
+$('#save-weight-config').on('click', function() {
+    items.forEach((item, index) => {
+        let newWeight = parseInt($(`#item-${index}-weight`).val());
+        if (newWeight > 0) {
+            items[index][1] = newWeight;
+        }
+    });
+    alert('Pesos atualizados com sucesso!');
+    $('#weight-config-panel').fadeOut();
 });
 
 $('.div-roulette').on('click', function() { rodaARoda(); });
@@ -74,7 +107,6 @@ function rodaARoda() {
         // Se houver um item forçado, use-o, caso contrário, escolha aleatoriamente
         if (spinCount % 90 === 0) {
             choosedIndex = 0; // Força o "Item 05" (índice 0) na décima tentativa
-      
         } else if (forcedItem !== null) {
             choosedIndex = forcedItem;
             forcedItem = null; // Reseta o item forçado após o uso
