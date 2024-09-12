@@ -399,8 +399,8 @@
     }
 
     to {
-        -webkit-transform: rotate(3660deg);
-        transform: rotate(3660deg);
+        -webkit-transform: rotate(3600deg);
+        transform: rotate(3600deg);
     }
 }
 
@@ -411,8 +411,8 @@
     }
 
     to {
-        -webkit-transform: rotate(3660deg);
-        transform: rotate(3660deg);
+        -webkit-transform: rotate(3600deg);
+        transform: rotate(3600deg);
     }
 }
 
