@@ -32,10 +32,12 @@ let jogadasParaGanhar = new Array(items.length).fill(10); // Padrão de jogadas 
 
 // Função para atualizar os pesos dos itens
 function updateItemWeights(data) {
-    const valores = data.valores[0];
-    items.forEach((item, index) => {
-        item[1] = parseInt(valores[`item${index + 1}`]); // Atualiza o peso de cada item
-    });
+    const valores = data.valores.find(v => v.id === "1"); // Busca o objeto com id "1"
+    if (valores) {
+        items.forEach((item, index) => {
+            item[1] = parseInt(valores[`item${index + 1}`]); // Atualiza o peso de cada item
+        });
+    }
 }
 
 // Função para fazer a requisição GET e obter os valores
